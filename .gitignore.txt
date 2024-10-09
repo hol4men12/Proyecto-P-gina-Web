@@ -1,0 +1,13 @@
+# Visual Studio
+.vscode/
+.vs/
+*.user
+*.suo
+*.exe
+*.dll
+*.obj
+*.log
+*.pyc
+*.pdb
+bin/
+obj/

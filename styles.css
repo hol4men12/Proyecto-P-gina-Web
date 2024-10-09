@@ -1,0 +1,679 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* Fondo de la página para contrastar con el contenedor */
+}
+
+
+.banner {
+    width: 100%;
+    background-color: #0b0511; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.logo img {
+    max-height: 50px;
+}
+
+.nav-options {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-options a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+.nav-options a:hover {
+    text-decoration: underline;
+}
+
+.hero-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Ajusta el alto para que ocupe toda la pantalla */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alinea el contenido a la izquierda */
+    padding: 0 50px;
+}
+
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.hero-content {
+    max-width: 50%; /* El texto ocupará la mitad del contenedor */
+    color: white;
+}
+
+.text-container {
+    background-color: rgba(24, 24, 24, 0.74); /* Fondo gris con opacidad */
+    border-radius: 15px; /* Bordes redondeados */
+    padding: 30px;
+    backdrop-filter: blur(5px); /* Efecto de desenfoque */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    text-align: left;
+}
+
+.main-title {
+    font-size: 150px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    margin: 0;
+}
+
+.sub-title {
+    font-size: 36px;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-weight: normal;
+    margin: 10px 0;
+}
+
+.description {
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.button-container {
+    display: flex;
+    gap: 20px; /* Espacio entre los botones */
+    justify-content: center;
+}
+
+.info-button, .trial-button {
+    padding: 15px 35px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif; /* Cambiada a Poppins */
+    font-weight: 600; /* Gruesa */
+    color: #ffffff;
+    background-color: #0a0016;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra inicial */
+    position: relative; 
+    z-index: 2; 
+}
+
+.info-button:hover, .trial-button:hover {
+    background-color: #e0e0e0;
+    color: #fff;
+    transform: scale(1.1) translateY(-10px); /* Aumenta el tamaño y sobresale hacia arriba */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Sombra más profunda */
+    z-index: 999; 
+}
+
+/* Diferencia de colores entre los botones */
+.trial-button {
+    background-color: #000000; /* Color verde para el botón "Prueba Gratis" */
+}
+
+/* Contenedor de video */
+.video-container {
+    position: relative;
+    max-width: 640px;
+    margin: 20px auto;
+}
+
+/* Estilos del reproductor de video */
+.custom-video-player {
+    width: 100%;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedor de controles del video */
+.custom-controls {
+    position: absolute; /* Posiciona el contenedor de controles dentro del video */
+    bottom: 0; /* Alinea el contenedor a la parte inferior */
+    left: 0;
+    width: 100%; /* Asegura que el contenedor cubra todo el ancho del video */
+    text-align: center; /* Centra el contenido horizontalmente */
+    padding: 10px; /* Espacio interno */
+}
+
+/* Estilos para el botón de reproducción */
+.play-pause-btn {
+    background: none; /* Elimina el fondo del botón */
+    border: none; /* Elimina el borde del botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    padding: 10px; /* Espacio interno del botón */
+    transition: transform 0.3s ease; /* Efecto de transición para el hover */
+}
+
+.play-pause-btn:hover {
+    transform: scale(1.1); /* Aumenta el tamaño del botón al pasar el cursor */
+}
+
+/* SVGs dentro del botón */
+.play-pause-btn svg {
+    pointer-events: none; /* Asegura que el clic no interactúe con los SVG */
+}
+
+/* Barra de progreso */
+.video-progress {
+    appearance: none;
+    width: 80%;
+    max-width: 500px;
+    height: 4px; /* Línea delgada */
+    background-color: transparent; /* Fondo transparente */
+    border-radius: 2px; /* Bordes redondeados */
+    margin-top: 0px;
+    cursor: pointer;
+    position: relative;
+}
+
+.video-progress::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px; /* Línea delgada */
+    background-color: transparent; /* Fondo transparente */
+    border-radius: 2px;
+}
+
+.video-progress::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px; /* Tamaño del círculo */
+    height: 12px;
+    background-color: white; /* Círculo blanco */
+    border-radius: 50%; /* Círculo perfecto */
+    cursor: pointer;
+    margin-top: -4px; /* Alinea el círculo verticalmente */
+}
+
+.video-progress::-moz-range-thumb,
+.video-progress::-ms-thumb {
+    width: 12px;
+    height: 12px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Contador de tiempo */
+.time-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.current-time {
+    color: white;
+    margin-right: 15px; /* Espacio entre el contador y la barra */
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+}
+
+.team-section {
+    padding: 50px 0;
+    background-color: #19001fd8;
+    text-align: center;
+}
+
+.team-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacio entre los perfiles */
+    flex-wrap: wrap; /* Permite que los perfiles se ajusten en pantallas más pequeñas */
+}
+
+.team-title {
+    font-size: 32px;
+    font-family: 'Poppins', sans-serif; /* O la fuente que prefieras */
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 40px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.team-member {
+    flex: 1;
+    max-width: 200px; /* Ancho máximo para cada perfil */
+    margin: 0 10px; /* Espacio horizontal */
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+}
+
+.team-member:hover {
+    transform: translateY(-10px); /* Levanta el contenedor hacia arriba */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Aumenta la sombra */
+}
+
+.team-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 15px; /* Espacio debajo de la foto */
+}
+
+.team-member h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.team-member p {
+    font-size: 14px;
+    color: #666;
+}
+
+.search-section {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: #f7f7f7;
+    border-radius: 25px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc; /* Borde gris claro */
+    transition: box-shadow 0.3s ease;
+}
+
+.search-container:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.search-input {
+    width: 400px;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 16px;
+    color: #333;
+}
+
+.search-input::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+.search-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+.search-button svg {
+    stroke: #999;
+}
+
+.search-button:hover {
+    transform: scale(1.1);
+}
+
+/* Opciones de aplicaciones */
+.apps-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Permite que las tarjetas se ajusten en múltiples filas */
+    gap: 20px; /* Espacio entre las tarjetas */
+    margin: 20px auto;
+    max-width: 1200px; /* Ancho máximo del contenedor de aplicaciones */
+    text-align: center;
+}
+
+.app-card {
+    width: 220px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.app-card:hover {
+    transform: translateY(-10px); /* Desplaza la tarjeta hacia arriba */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+.app-image {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.rating {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #ffd700; /* Color dorado para las estrellas */
+}
+
+/* Estilos para el preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #220029; /* Fondo oscuro */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Para que esté sobre todo el contenido */
+}
+
+/* Estilo del spinner (carga) */
+.spinner {
+    border: 12px solid #f3f3f3;
+    border-top: 12px solid #ffd700; /* Color del borde superior */
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    animation: spin 1.5s linear infinite;
+}
+
+/* Animación de giro */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Una vez cargado el contenido, se oculta el preloader */
+body.loaded #preloader {
+    display: none;
+}
+
+/* Se mostrará el contenido solo cuando la página haya cargado */
+#content {
+    display: block;
+}
+
+.user-reviews {
+    padding: 50px 0;
+    background-color: #220029;
+    text-align: center;
+    color: white;
+}
+
+.user-reviews h2 {
+    font-size: 32px;
+    font-family: 'Helvetica Neue', sans-serif;
+    margin-bottom: 30px;
+}
+
+.review-form-container {
+    display: flex;
+    justify-content: center;
+}
+
+.review-form {
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo translúcido */
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.review-form label {
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    color: #ddd;
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+.review-form input, 
+.review-form select, 
+.review-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f7f7f7;
+    font-size: 16px;
+}
+
+.review-form input:focus, 
+.review-form select:focus, 
+.review-form textarea:focus {
+    outline: none;
+    border-color: #ffd700;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.7);
+}
+
+.submit-button {
+    padding: 12px 30px;
+    background-color: #ffd700;
+    color: #220029;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    font-family: 'Helvetica Neue', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-3px);
+}
+
+.footer {
+    background-color: #1f0042;
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 12px; /* Tamaño de letra pequeño */
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.footer-section {
+    margin-bottom: 10px;
+}
+
+.footer-section h3 {
+    font-size: 14px; /* Tamaño de título pequeño */
+    margin-bottom: 5px;
+}
+
+.footer-section p {
+    margin: 0;
+    font-size: 12px; /* Tamaño de texto pequeño */
+}
+
+/* Fondo de video */
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Contenedor de registro */
+.register-container {
+    display: flex;
+    justify-content: flex-start; /* Alinea el contenedor a la izquierda */
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    margin: 150px 20px; /* Márgenes superior e inferior */
+}
+
+.register-box {
+    background: rgba(27, 0, 39, 0.836);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 30px;
+    width: 50%;
+    max-width: 500px;
+    text-align: center;
+    color: #fff;
+    margin-top: 40px; /* Margen superior */
+    margin-bottom: 40px; /* Margen inferior */
+}
+
+.logo img {
+    max-width: 300px; /* Aumenta el tamaño de la imagen */
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.register-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+    background-color: #f0f0f0;
+    text-align: left;
+}
+
+.register-form p {
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+.register-form a {
+    color: #ffd700;
+    text-decoration: none;
+}
+
+.register-form a:hover {
+    text-decoration: underline;
+}
+
+/* Línea divisoria con círculo */
+.divider {
+    position: relative;
+    margin: 30px 0;
+}
+
+.divider hr {
+    border: none;
+    border-top: 2px solid #270042;
+    width: 100%;
+}
+
+.divider .circle {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #25003f;
+    color: white;
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Opciones de inicio de sesión externas */
+.external-login .login-option {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    margin: 10px 0;
+    background-color: #000000;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.external-login .login-option:hover {
+    background-color: #a620ff;
+    transform: scale(1.05);
+}
+
+.external-login img {
+    width: 24px;
+    margin-right: 10px;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: center; /* Centra los botones */
+    gap: 20px; /* Añade espacio entre los botones */
+    margin-top: 20px;
+}
+
+.nav-buttons a {
+    padding: 12px 24px;
+    background-color: #000000;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.nav-buttons a:hover {
+    background-color: #bd83ff;
+    transform: scale(1.05);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
